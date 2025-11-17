@@ -1,0 +1,74 @@
+class Nodo():
+  def __init__(self,dato):
+    self.dato = dato
+    self.siguiente = None
+    
+class ListaCircular():
+  def __init__(self):
+      self.primero = None
+      self.ultimo = None
+    
+  def vacia(self):
+    return self.primero is None
+  
+  def agregarinicio(self, dato):
+    if self.vacia():
+      self.primero = self.ultimo = Nodo(dato)
+      self.ultimo.siguiente = self.primero
+    else:
+      aux = Nodo(dato)
+      aux.siguiente = self.primero
+      self.primero = aux
+      self.ultimo.siguiente = self.primero
+    
+  def agregarfinal(self, dato):
+    if self.vacia():
+      self.ultimo = self.primero = Nodo(dato)
+      self.ultimo.siguiente = self.primero
+    else:
+      aux = self.ultimo 
+      self.ultimo = aux.siguiente = Nodo(dato)
+      self.ultimo.siguiente = self.primero
+  
+  def eliminarprimer(self):
+      if not self.vacia():
+          self.primero = self.primero.siguiente
+          self.ultimo.siguiente = self.primero
+  def eliminarultimo(self):
+      if not self.vacia():
+          aux = self.primero
+          while aux.siguiente != self.ultimo:
+              aux = aux.siguiente
+          aux.siguiente = self.primero
+          self.ultimo = aux
+
+  def printear(self):
+    aux = self.primero
+    while aux.siguiente != self.primero:
+      print(aux.dato)
+      aux = aux.siguiente
+    print(aux.dato)
+
+
+lista = ListaCircular()
+
+lista.agregarinicio(1)
+lista.agregarinicio(2)
+lista.agregarinicio(3)
+
+print("Agregar al inicio")
+lista.printear()
+
+lista.agregarfinal(4)
+lista.agregarfinal(5)
+
+print("Agregar al final")
+lista.printear()
+
+lista.eliminarprimer()
+print("Agregar al final")
+lista.printear()
+
+lista.eliminarultimo()
+print("Agregar al final")
+lista.printear()
