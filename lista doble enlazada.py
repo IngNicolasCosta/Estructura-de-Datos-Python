@@ -97,4 +97,5 @@ lista.eliminar_ultimo()
 print("Printear lista de inicio a fin, eliminar ultimo")
 lista.printear_inicio_lista()
 print("Printear lista de fin a inicio, eliminar ultimo")
+
 lista.printear_final_lista()
